@@ -1,0 +1,17 @@
+# Données et embeddings
+*.npy
+*.pt
+*.pth
+data/
+data_dedup/
+outputs/
+outputs_*/
+
+# CSV bloqués, sauf ceux du dossier results/
+*.csv
+!results/*.csv
+
+# Sauvegardes et fichiers temporaires
+*_sauvegarde.ipynb
+.ipynb_checkpoints/
+__pycache__/
