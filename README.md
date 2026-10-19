@@ -26,7 +26,7 @@ On ArSarcaMoji, the improvement is statistically significant for MARBERT and Ara
 
 ## A note on emojis
 
-A first protocol gave the embedding models the text with emojis and reached a macro F1 of about 0.99 on ArSarcaMoji. Some frequent emojis almost perfectly predict the label, so the score did not measure sarcasm detection. In the final protocol, embeddings are computed on the text **without emojis**, and emojis enter only through the emoji-count feature. All ArSarcaMoji results above use this protocol.
+A first protocol gave the embedding models the text with emojis and reached a macro F1 of about 0.99 on ArSarcaMoji. Some frequent emojis almost perfectly predict the label, so the score did not measure sarcasm detection. In the final protocol, embeddings are computed on the text **without emojis** (`Plain_Text` column). Emojis still reach the classifier, but only through the pragmatic features: mainly the emoji count, and also the sentiment scores, which are computed on the text with emojis. All ArSarcaMoji results above use this protocol.
 
 ## Repository structure
 
@@ -57,6 +57,8 @@ The notebooks expect the data in `data/` and write their outputs in `outputs*/`.
 - The train/validation/test split is fixed, so its variability is not measured.
 - The ablation sets features to zero at inference time without retraining.
 - Ablation was run only for the configurations with a significant effect.
+- On ArSarcaMoji, 6 of the 18 features are constant and 2 are almost constant, so only about 10 features carry information on this dataset.
+- The sentiment scores are computed on the text with emojis, so part of the emoji signal also enters through them, not only through the emoji count.
 
 ## Installation
 
