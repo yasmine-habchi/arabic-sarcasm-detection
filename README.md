@@ -32,9 +32,10 @@ A first protocol gave the embedding models the text with emojis and reached a ma
 
     ArSarcasm-v2/
       02_pragmatic_features.ipynb          18 pragmatic features
+      08_marbert_embeddings.ipynb          MARBERT sequence embeddings (64 x 768)
       09_sattblstmconvnet_final.ipynb      MARBERT: runs, Wilcoxon, ablation
-      10_arabert_arsarcasmv2.ipynb         AraBERT
-      11_camelbert_arsarcasmv2.ipynb       CamelBERT
+      10_arabert_arsarcasmv2.ipynb         AraBERT (embeddings + runs)
+      11_camelbert_arsarcasmv2.ipynb       CamelBERT (embeddings + runs)
     ArSarcaMoji/
       01_exploration.ipynb                 data loading, binary label, split
       02_dedup_and_features.ipynb          duplicate removal, features, emoji analysis
@@ -48,7 +49,24 @@ The datasets and the embedding files are **not included**.
 - ArSarcasm-v2: Abu Farha et al., 2021.
 - ArSarcaMoji: `arbml/ArSarcasMoji` on Hugging Face (use the `Plain_Text` column for embeddings).
 
-The notebooks expect the data in `data/` and write their outputs in `outputs*/`. Run the feature and embedding notebooks first, because the training notebooks reload their outputs.
+The notebooks expect the data in `data/` (at the repository root) and write their outputs in `outputs*/` folders.
+
+## How to run
+
+Run the notebooks in this order, because each one reloads the files written by the previous ones.
+
+**ArSarcasm-v2**
+1. `02_pragmatic_features`
+2. `08_marbert_embeddings` (slow: extracts the MARBERT embeddings)
+3. `09_sattblstmconvnet_final`
+4. `10_arabert_arsarcasmv2` and `11_camelbert_arsarcasmv2` (each extracts its own embeddings)
+
+**ArSarcaMoji**
+1. `01_exploration`
+2. `02_dedup_and_features`
+3. `09_marbert_correction`
+4. `10_arabert_correction_plaintext` (it also reloads the MARBERT outputs of step 3 for comparison plots)
+5. `11_camelbert_correction`
 
 ## Limitations
 
